@@ -1,23 +1,31 @@
 package com.pizzeria.id.model;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "cliente")
-public class Cliente {
+public class Cliente implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	@Id
 	@Column(name = "id_cliente")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	
 	@Column(name = "nombre")
 	private String nombre;
@@ -26,21 +34,17 @@ public class Cliente {
 	@Column(name = "contacto")
 	private String contacto;
 	
+
+
+//	END CONTENIDO RELACIONES
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "fk_cliente", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-	private List<Orden> ordenes;
 	
-	
-	public void agregarOrdenes(Orden orden) {
-		if(ordenes == null) ordenes = new ArrayList<Orden>();
-		ordenes.add(orden);
-		orden.setFk_cliente(this);
-	}
-	
+//	CONSTRUCTORES
 	public Cliente() {}
 
-	public Cliente( String nombre, String contacto) {
+
+	public Cliente(Integer id, String nombre, String contacto) {
+		this.id = id;
 		this.nombre = nombre;
 		this.contacto = contacto;
 	}
@@ -49,32 +53,31 @@ public class Cliente {
 		return id;
 	}
 
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 
 	public String getNombre() {
 		return nombre;
 	}
 
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 
 	public String getContacto() {
 		return contacto;
 	}
 
+
 	public void setContacto(String contacto) {
 		this.contacto = contacto;
 	}
 
-	public List<Orden> getOrdenes() {
-		return ordenes;
-	}
 
-	public void setOrdenes(List ordenes) {
-		this.ordenes = ordenes;
-	}
-	
+
 }
