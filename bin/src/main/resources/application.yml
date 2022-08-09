@@ -12,10 +12,11 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3307/pizzeria_id?zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3307/test_3?zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
     username: root
     password: root1234
   

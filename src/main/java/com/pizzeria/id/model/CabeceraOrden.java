@@ -34,7 +34,7 @@ public class CabeceraOrden implements Serializable{
 	@Column(name = "fecha_pedido")
 	private Date fecha_pedido;
 	
-	@Column(name = "fecha_ingreso")
+	@Column(name = "fecha_entrega")
 	private Date fecha_entrega;
 
 	
