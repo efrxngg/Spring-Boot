@@ -7,6 +7,7 @@ public class DetalleOrdenJs{
 	public Integer cantidad;
 	public String comentario;
 	public List<IngredienteJs> ingredientes;
+	public Double otros = 0.0;
 	
 	@Override
 	public String toString() {
