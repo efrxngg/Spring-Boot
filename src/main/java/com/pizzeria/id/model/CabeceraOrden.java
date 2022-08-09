@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Table(name = "cabecera_orden")
@@ -24,19 +22,11 @@ public class CabeceraOrden implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Setter @Getter @Column(name = "id_cabecera_orden")
+	@Column(name = "id_cabecera_orden")
 	private Integer id_cabecera_orden;
-	
-//	@JsonIgnore
-//	@OneToMany(mappedBy = "fk_cabecera_orden")
-//	private List<DetalleOrden> detallesOrden;
-//	
-//	public void agregarDetallesDeOrden(DetalleOrden dt_or) {
-//		if(detallesOrden == null) detallesOrden = new ArrayList<DetalleOrden>();
-//		detallesOrden.add(dt_or);
-//		dt_or.setFk_cabecera_orden(this);
-//	}
-	
+
+	@Column(name = "fk_cliente")
+	private Integer fk_cliente;
 
 	@Column(name = "estado")
 	private Boolean estado;
@@ -51,16 +41,17 @@ public class CabeceraOrden implements Serializable{
 //	Setters and getters and Constructors
 	public CabeceraOrden() {}
 
-	public CabeceraOrden(Integer id_cabecera_orden, Cliente fk_cliente, Boolean estado, Date fecha_pedido,
+	
+	public CabeceraOrden(Integer id_cabecera_orden, Integer fk_cliente, Boolean estado, Date fecha_pedido,
 			Date fecha_entrega) {
+		super();
 		this.id_cabecera_orden = id_cabecera_orden;
-
+		this.fk_cliente = fk_cliente;
 		this.estado = estado;
 		this.fecha_pedido = fecha_pedido;
 		this.fecha_entrega = fecha_entrega;
+
 	}
-
-
 
 
 	public Integer getId_cabecera_orden() {
@@ -73,8 +64,14 @@ public class CabeceraOrden implements Serializable{
 	}
 
 
+	public Integer getFk_cliente() {
+		return fk_cliente;
+	}
 
-	
+
+	public void setFk_cliente(Integer fk_cliente) {
+		this.fk_cliente = fk_cliente;
+	}
 
 
 	public Boolean getEstado() {
@@ -105,6 +102,7 @@ public class CabeceraOrden implements Serializable{
 	public void setFecha_entrega(Date fecha_entrega) {
 		this.fecha_entrega = fecha_entrega;
 	}
+	
 
 	
 }
