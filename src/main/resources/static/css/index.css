@@ -9,7 +9,7 @@
 .contenedor{
     display: flex;
     justify-content: center;
-    margin: 3%;
+    margin: 1%;
 }
 .lista-d li a{
     color: #000;
