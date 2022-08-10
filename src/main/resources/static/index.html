@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzeria | Orden</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+
+    <header class="cbz">
+        <nav class="navbar bg-danger">
+            <div class="container-fluid">
+                <a class="navbar-brand img">
+                    <img src="https://i.pinimg.com/originals/ae/ae/4e/aeae4ead932a81071dec412d33491acd.png" alt=""
+                        width="50px">
+                </a>
+
+                <h1>Pizzeria</h1>
+
+                <li class="nav-item dropdown opciones">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Opciones Orden
+                    </a>
+
+                    <ul class="dropdown-menu lista-d">
+                        <li><a class="dropdown-item" href="#">Hacer Orden</a></li>
+                        <li><a class="dropdown-item" href="/html/OrdenesPendientes.html">Ver Ordenes Pendientes</a></li>
+                        <li><a class="dropdown-item" href="#">Cancelar Orden</a></li>
+                        <li><a class="dropdown-item" href="#">Ordenes Despachadas</a></li>
+                    </ul>
+                </li>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="contenedor">
+        <div class="col-4">
+            <form>
+                <fieldset>
+                    <legend>Datos del cliente</legend>
+
+                    <label for="">Nombre </label>
+                    <input type="text" class="form-control" id="orden-nombre">
+                    <label for="">Contacto</label>
+                    <input type="text" class="form-control" id="orden-contacto">
+                </fieldset>
+
+
+                <fieldset>
+                    <legend>Elige una base Pizza</legend>
+                    <label>
+                        <input type="radio" name="color" value=1 id="base-pizza-1"> Gruesa
+                    </label>
+                    <label>
+                        <input type="radio" name="color" value=2 id="base-pizza-2"> Simple
+                    </label>
+
+                </fieldset>
+
+
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
