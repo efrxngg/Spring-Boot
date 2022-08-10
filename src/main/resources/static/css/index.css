@@ -38,3 +38,17 @@
   .checkeable input:checked  + img {
     border-color: blue;
   }
+
+
+.cont{
+  position: relative;
+}
+
+.left{
+  position: absolute;
+  right : 0;
+}
+
+#cant-detalle-pizza{
+  margin: 10px;
+}

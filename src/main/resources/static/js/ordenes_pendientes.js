@@ -5,7 +5,6 @@ const getAllOrdersPendients = async() => {
     
     if(response.status === 200){
         const datos = await response.json();
-        console.log(datos);
 
         var ordenes = ``;
 
