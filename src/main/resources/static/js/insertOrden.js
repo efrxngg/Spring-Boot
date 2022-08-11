@@ -95,7 +95,7 @@ const hacerPedido = async() => {
     let response = await fetch("/orden/insertar", options);
 
     if(response.status === 200){
-        alert("La orden se realizo correctamente");
+        console.log("La orden se realizo correctamente");
     }
 
 }

@@ -5,8 +5,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +32,7 @@ import com.pizzeria.id.model.TipoBasePizza;
 
 @RestController
 @RequestMapping("orden")
-public class ControllerCliente {
+public class OrdenController {
 
 	@Autowired
 	private ICrudCliente objCC;
@@ -51,41 +54,40 @@ public class ControllerCliente {
 	}
 	
 	
-	@PostMapping("prueba")
-	public void prueba(@RequestBody OrdenJs orden) {
-		System.out.println("Datos del cliente: "+orden.nombre +" "+ orden.contacto);
+	@PutMapping("update/false/{id}")
+	public void updateCabeceraOrdenByIdFalse(@PathVariable("id") Integer id) {
+		Optional<CabeceraOrden> optionalCO = objCCO.findById(id);
 		
-		List<DetalleOrdenJs> detallesDeLaOrden = orden.detallesDeLaOrden;
-		for(DetalleOrdenJs detalle: detallesDeLaOrden ) {
-			System.out.println("Id Base Pizza: "+detalle.base_pizza);
-			System.out.println("Cantidad: "+detalle.cantidad);
-			System.out.println("Comentario: "+detalle.comentario);
-			List<IngredienteJs>listaIngredientes = detalle.ingredientes;
-			for(IngredienteJs ingrediente: listaIngredientes) {
-				System.out.println("Id Ingrediente: "+ingrediente.ingrediente+ " Cantidad: " + ingrediente.cantidad);
-			}
+		if(optionalCO.isPresent()) {
+			CabeceraOrden updateCO = optionalCO.get();
+			updateCO.setEstado(false);
+			objCCO.save(updateCO);
 		}
-		
-		
 	}
 	
+	@PutMapping("update/true/{id}")
+	public void updateCabeceraOrdenByIdTrue(@PathVariable("id") Integer id) {
+		Optional<CabeceraOrden> optionalCO = objCCO.findById(id);
+		
+		if(optionalCO.isPresent()) {
+			CabeceraOrden updateCO = optionalCO.get();
+			updateCO.setEstado(true);
+			objCCO.save(updateCO);
+		}
+	}
+
 	
 	@PostMapping("insertar")
 	public void insertOrden(@RequestBody OrdenJs orden) {
-		System.out.println("1-. PROCESO ---------------------------");
-		System.out.println("Datos del cliente: "+orden.nombre +" "+ orden.contacto);
-		
 		Cliente cliente = new Cliente();
 		cliente.setNombre(orden.nombre);
 		cliente.setContacto(orden.contacto);
 		Cliente clienteGuardado = objCC.save(cliente);
-		
-		System.out.println("2-. PROCESO ---------------------------");
+
 		CabeceraOrden cbzOrden = new CabeceraOrden();
 		cbzOrden.setFk_cliente(clienteGuardado.getId());
 		CabeceraOrden cbzOrdenGuardada = objCCO.save(cbzOrden);
 		
-		System.out.println("3-. PROCESO ---------------------------");
 		List<DetalleOrdenJs> detallesDeLaOrden = orden.detallesDeLaOrden;
 		
 //		Contenedor detalle orden
@@ -93,9 +95,7 @@ public class ControllerCliente {
 //		--- Recolector de costo de la pizza/s
 		Double subTotal = 0.0;
 		for(DetalleOrdenJs detalle: detallesDeLaOrden ) {
-			System.out.println("Id Base Pizza: "+detalle.base_pizza);
-			System.out.println("Cantidad: "+detalle.cantidad);
-			System.out.println("Comentario: "+detalle.comentario);
+			
 //			--- Calculando el precio c/u pizza
 			subTotal += getTipoBasePizza(detalle.base_pizza).getCosto() * detalle.cantidad;
 			subTotal += detalle.otros;
@@ -112,7 +112,6 @@ public class ControllerCliente {
 			detOrd.setOtros(detalle.otros);
 			detalleOrdenOtros = objCDO.save(detOrd);
 			
-			System.out.println("4-. PROCESO ---------------------------");
 			List<IngredienteJs>listaIngredientes = detalle.ingredientes;			
 			for(IngredienteJs ingrediente: listaIngredientes) {
 				System.out.println("Id Ingrediente: "+ingrediente.ingrediente+ " Cantidad: " + ingrediente.cantidad);
@@ -134,6 +133,14 @@ public class ControllerCliente {
 		dos.setSub_total(subTotal);
 		dos.setTotal(subTotal + (subTotal * 0.12));
 		objCDO.save(dos);
+	}
+	
+	
+	@DeleteMapping("borrarPor/{id}")
+	private void deleteOrdenById(@PathVariable("id") Integer id) {
+		System.out.println(id);
+		objCCO.deleteById(id);
+
 	}
 	
 	
