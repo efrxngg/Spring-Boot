@@ -48,10 +48,10 @@
                 <fieldset>
                     <legend>Datos del cliente</legend>
 
-                    <label for="">Nombre </label>
-                    <input type="text" class="form-control" id="orden-nombre">
-                    <label for="">Contacto</label>
-                    <input type="text" class="form-control" id="orden-contacto">
+                    <label for=""></label>
+                    <input type="text" class="form-control" id="orden-nombre" placeholder="Nombre">
+                    <label for=""></label>
+                    <input type="text" class="form-control" id="orden-contacto" placeholder="Contacto">
                 </fieldset>
 
             </form>
@@ -73,12 +73,12 @@
                     <label>
                         <img src="https://cdn-icons.flaticon.com/png/512/706/premium/706934.png?token=exp=1660151429~hmac=7239946b49845d017ec9517ff4a6c65d"
                             width="100px" alt="" srcset="">
-                        <input type="radio" name="color" value=1 id="base-pizza-1"> Gruesa
+                        <input type="radio" name="pizzas" value="1" id="1"> Gruesa
                     </label>
                     <label>
                         <img src="https://cdn-icons.flaticon.com/png/512/706/premium/706934.png?token=exp=1660151429~hmac=7239946b49845d017ec9517ff4a6c65d"
                             width="100px" alt="" srcset="">
-                        <input type="radio" name="color" value=2 id="base-pizza-2"> Simple
+                        <input type="radio" name="pizzas" value="2" id="2"> Simple
                     </label>
 
                     <br>
@@ -88,22 +88,26 @@
                         <div class="container text-center">
                             <label for="">
                                 🧀
-                                <input type="number" name="cantidad-queso" id="cantidad-queso" class="col-2" value=0>
+                                <input type="number" name="ingredientes" id="1" class="col-2" value=0>
 
                                 🍅
-                                <input type="number" name="cantidad-tomate" id="cantidad-tomate" class="col-2" value=0>
+                                <input type="number" name="ingredientes" id="3" class="col-2" value=0>
 
                                 🥤
-                                <input type="number" name="cantidad-bebida" id="cantidad-bebida" class="col-2" value=0>
+                                <input type="number" name="ingredientes" id="10" class="col-2" value=0>
                             </label>
                         </div>
+                        <br>
+                        <input type="text" name="comentario" id="comentario" placeholder="Comentario" class="form-control">
+                        <br>
+                        <input type="text" name="comentario" id="otros" placeholder="Otros: propina, envio, etc" class="form-control">
 
                     </div>
 
                 </fieldset>
                 <br>
                 <div class="container">
-                    <button type="reset" onclick="" class="btn btn-danger">+ Pizza</button>
+                    <button type="button" onclick="añadirDetallesOrden()" class="btn btn-danger">+ Pizza</button>
                 </div>
             </form>
 
@@ -111,7 +115,7 @@
             <hr>
 
             <div class="container text-center">
-                <button class="btn btn-warning" onclick="" type="reset">Hacer Pedido</button>
+                <button class="btn btn-warning" type="button" onclick="hacerPedido()">Hacer Pedido</button>
             </div>
         </div>
     </div>

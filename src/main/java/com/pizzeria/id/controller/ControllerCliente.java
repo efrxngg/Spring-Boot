@@ -70,7 +70,7 @@ public class ControllerCliente {
 	}
 	
 	
-	@PostMapping("insertar-orden")
+	@PostMapping("insertar")
 	public void insertOrden(@RequestBody OrdenJs orden) {
 		System.out.println("1-. PROCESO ---------------------------");
 		System.out.println("Datos del cliente: "+orden.nombre +" "+ orden.contacto);
